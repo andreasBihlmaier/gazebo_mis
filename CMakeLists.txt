@@ -5,8 +5,8 @@ project(gazebo_mis)
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
-	gazebo_ros
-	roscpp
+  gazebo_ros
+  roscpp
 )
 
 ## System dependencies are found with CMake's conventions
@@ -61,7 +61,7 @@ catkin_package(
 #  DEPENDS system_lib
   DEPENDS
     roscpp
-	gazebo_ros
+    gazebo_ros
 )
 
 ###########
@@ -80,8 +80,11 @@ include_directories(
 )
 
 ## Declare a cpp library
-add_library(${PROJECT_NAME}
-  src/mis_system_plugin.cc
+add_library(GazeboMISGuiPlugin
+  src/GazeboMISGuiPlugin.cc
+)
+add_library(GazeboMISServerPlugin
+  src/GazeboMISServerPlugin.cc
 )
 
 ## Declare a cpp executable
@@ -92,7 +95,11 @@ add_library(${PROJECT_NAME}
 # add_dependencies(gazebo_mis_node gazebo_mis_generate_messages_cpp)
 
 ## Specify libraries to link a library or executable target against
-target_link_libraries(${PROJECT_NAME}
+target_link_libraries(GazeboMISGuiPlugin
+  ${catkin_LIBRARIES}
+  ${GAZEBO_LIBRARIES}
+)
+target_link_libraries(GazeboMISServerPlugin
   ${catkin_LIBRARIES}
   ${GAZEBO_LIBRARIES}
 )
