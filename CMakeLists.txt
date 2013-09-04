@@ -4,10 +4,16 @@ project(gazebo_mis)
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
-find_package(catkin REQUIRED COMPONENTS gazebo_ros roscpp)
+find_package(catkin REQUIRED COMPONENTS
+	gazebo_ros
+	roscpp
+)
 
 ## System dependencies are found with CMake's conventions
-# find_package(Boost REQUIRED COMPONENTS system)
+find_package(gazebo REQUIRED)
+
+include(FindPkgConfig)
+pkg_check_modules(OGRE OGRE)
 
 
 ## Uncomment this if the package has a setup.py. This macro ensures
@@ -53,23 +59,30 @@ catkin_package(
 #  LIBRARIES gazebo_mis
 #  CATKIN_DEPENDS gazebo_ros roscpp
 #  DEPENDS system_lib
+  DEPENDS
+    roscpp
+	gazebo_ros
 )
 
 ###########
 ## Build ##
 ###########
 
+link_directories(${GAZEBO_LIBRARY_DIRS} ${OGRE_LIBRARY_DIRS})
+
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
 # include_directories(include)
 include_directories(
   ${catkin_INCLUDE_DIRS}
+  ${GAZEBO_INCLUDE_DIRS}
+  ${OGRE_INCLUDE_DIRS}
 )
 
 ## Declare a cpp library
-# add_library(gazebo_mis
-#   src/${PROJECT_NAME}/gazebo_mis.cpp
-# )
+add_library(${PROJECT_NAME}
+  src/mis_system_plugin.cc
+)
 
 ## Declare a cpp executable
 # add_executable(gazebo_mis_node src/gazebo_mis_node.cpp)
@@ -79,9 +92,10 @@ include_directories(
 # add_dependencies(gazebo_mis_node gazebo_mis_generate_messages_cpp)
 
 ## Specify libraries to link a library or executable target against
-# target_link_libraries(gazebo_mis_node
-#   ${catkin_LIBRARIES}
-# )
+target_link_libraries(${PROJECT_NAME}
+  ${catkin_LIBRARIES}
+  ${GAZEBO_LIBRARIES}
+)
 
 #############
 ## Install ##
