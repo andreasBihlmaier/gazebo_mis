@@ -1,6 +1,9 @@
 #include "gazebo/gui/GuiIface.hh"
-#include "gazebo/rendering/rendering.hh"
+#include "gazebo/rendering/RenderingIface.hh"
+#include "gazebo/rendering/RenderEngine.hh"
+#include "gazebo/rendering/Scene.hh"
 #include "gazebo/gazebo.hh"
+#include "gazebo/rendering/ogre_gazebo.h"
 
 namespace gazebo
 {
@@ -13,12 +16,25 @@ namespace gazebo
 
       virtual void Load(int /*_argc*/, char ** /*_argv*/)
       {
-        std::cout << "Hello from GazeboMIS" << std::endl;
       }
 
     private:
       virtual void Init()
       {
+        std::cout << "------------------- GazeboMIS -------------------" << std::endl;
+        std::cout << "get_world(): " << gui::get_world() << std::endl;
+
+        rendering::ScenePtr scene = rendering::RenderEngine::Instance()->GetScene();
+        Ogre::SceneManager* sceneManager = scene->GetManager();
+
+        Ogre::Root *root = rendering::RenderEngine::Instance()->root;
+        Ogre::ResourceGroupManager::getSingleton().addResourceLocation("/usr/share/OGRE-1.7.4/media/models/", "FileSystem");
+        Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
+
+
+        Ogre::Entity* headEntity = sceneManager->createEntity("Head", "ogrehead.mesh");
+        Ogre::SceneNode* headNode = sceneManager->getRootSceneNode()->createChildSceneNode("HeadNode");
+        headNode->attachObject(headEntity);
       }
   };
 
