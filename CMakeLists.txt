@@ -55,7 +55,7 @@ pkg_check_modules(OGRE OGRE)
 ## CATKIN_DEPENDS: catkin_packages dependent projects also need
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
-#  INCLUDE_DIRS include
+  INCLUDE_DIRS include
 #  LIBRARIES gazebo_mis
 #  CATKIN_DEPENDS gazebo_ros roscpp
 #  DEPENDS system_lib
@@ -74,6 +74,7 @@ link_directories(${GAZEBO_LIBRARY_DIRS} ${OGRE_LIBRARY_DIRS})
 ## Your package locations should be listed before other locations
 # include_directories(include)
 include_directories(
+  include
   ${catkin_INCLUDE_DIRS}
   ${GAZEBO_INCLUDE_DIRS}
   ${OGRE_INCLUDE_DIRS}
