@@ -6,6 +6,9 @@
 #include "gazebo/rendering/ogre_gazebo.h"
 #include "gazebo/physics/PhysicsIface.hh"
 
+#include <ros/ros.h>
+
+
 namespace gazebo
 {
   class GazeboMISServerPlugin : public SystemPlugin
@@ -17,6 +20,11 @@ namespace gazebo
 
       virtual void Load(int /*_argc*/, char ** /*_argv*/)
       {
+        if (!ros::isInitialized()) {
+          ROS_FATAL_STREAM("A ROS node for Gazebo has not been initialized, unable to load plugin. "
+            << "Load the Gazebo system plugin 'libgazebo_ros_api_plugin.so' in the gazebo_ros package)");
+          return;
+        }
       }
 
     private:
