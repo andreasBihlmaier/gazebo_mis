@@ -78,6 +78,7 @@ include_directories(
   ${catkin_INCLUDE_DIRS}
   ${GAZEBO_INCLUDE_DIRS}
   ${OGRE_INCLUDE_DIRS}
+  ${OGRE_INCLUDE_DIRS}/Paging # workaround for: "/usr/include/OGRE/Terrain/OgreTerrainPaging.h:33:35: fatal error: OgrePagedWorldSection.h: No such file or directory"
 )
 
 ## Declare a cpp library
