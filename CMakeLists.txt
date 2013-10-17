@@ -68,6 +68,8 @@ catkin_package(
 ## Build ##
 ###########
 
+SET(CMAKE_CXX_FLAGS "-O2 -Wall -Werror")
+
 link_directories(${GAZEBO_LIBRARY_DIRS} ${OGRE_LIBRARY_DIRS})
 
 ## Specify additional locations of header files

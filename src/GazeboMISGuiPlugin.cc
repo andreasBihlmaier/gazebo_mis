@@ -30,8 +30,8 @@ namespace gazebo
   GazeboMISGuiPlugin::Init()
   {
     std::cout << "------------------- GazeboMISGuiPlugin -------------------" << std::endl;
-    rendering::ScenePtr scene = rendering::RenderEngine::Instance()->GetScene();
-    Ogre::SceneManager* sceneManager = scene->GetManager();
+    //rendering::ScenePtr scene = rendering::RenderEngine::Instance()->GetScene();
+    //Ogre::SceneManager* sceneManager = scene->GetManager();
 
 #if 0
     std::cout << "Adding OGRE head to scene" << std::endl;
