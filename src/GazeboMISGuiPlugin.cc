@@ -30,8 +30,16 @@ namespace gazebo
   GazeboMISGuiPlugin::Init()
   {
     std::cout << "------------------- GazeboMISGuiPlugin -------------------" << std::endl;
-    //rendering::ScenePtr scene = rendering::RenderEngine::Instance()->GetScene();
-    //Ogre::SceneManager* sceneManager = scene->GetManager();
+    rendering::ScenePtr scene = rendering::RenderEngine::Instance()->GetScene();
+    Ogre::SceneManager* sceneManager = scene->GetManager();
+    Ogre::ShadowTechnique shadowTechnique = sceneManager->getShadowTechnique();
+    std::cout << "shadowTechnique=";
+    if (shadowTechnique == Ogre::SHADOWTYPE_TEXTURE_ADDITIVE) {
+      std::cout << "SHADOWTYPE_TEXTURE_ADDITIVE";
+    } else {
+      printf("0x%02X", shadowTechnique);
+    }
+    std::cout << std::endl;
 
 #if 0
     std::cout << "Adding OGRE head to scene" << std::endl;
