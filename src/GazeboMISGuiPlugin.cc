@@ -43,7 +43,7 @@ namespace gazebo
 
 #if 0
     std::cout << "Adding OGRE head to scene" << std::endl;
-    Ogre::Root *root = rendering::RenderEngine::Instance()->root;
+    //Ogre::Root *root = rendering::RenderEngine::Instance()->root;
     Ogre::ResourceGroupManager::getSingleton().addResourceLocation("/usr/share/OGRE-1.7.4/media/models/", "FileSystem");
     Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
 
