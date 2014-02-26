@@ -2,7 +2,7 @@
 <package>
   <name>gazebo_mis</name>
   <version>0.0.0</version>
-  <description>The gazebo_mis package</description>
+  <description>Gazebo SystemPlugins targeted at minimally-invasive surgery</description>
   <maintainer email="andreas.bihlmaier@gmx.de">Andreas Bihlmaier</maintainer>
   <license>MIT</license>
 
